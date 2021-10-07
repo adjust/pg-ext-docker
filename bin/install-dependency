@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+HOST="${HOST:-github.com}"
+
+if [[ -n ${AUTH_TOKEN} ]]; then
+    prefix="${AUTH_TOKEN}:x-oauth-basic@"
+fi
+
+for repo in $@
+do
+    echo "Cloning and building https://${HOST}/${repo}.git..."
+    directory=$(echo ${repo} | tr / _)
+    git clone https://${prefix}${HOST}/${repo}.git ${directory}
+    make -C ${directory} install CFLAGS="${CFLAGS}"
+done
