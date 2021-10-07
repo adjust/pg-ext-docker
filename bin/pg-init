@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+runuser -u postgres -- initdb
+runuser -u postgres -- pg_ctl -D /var/lib/postgresql/data -l /tmp/postgres.log start
