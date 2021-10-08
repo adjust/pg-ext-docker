@@ -6,9 +6,9 @@ ENV LANG=C.UTF-8 REPO=/repo
 
 # Install dependencies
 RUN echo 'http://dl-3.alpinelinux.org/alpine/edge/main' > /etc/apk/repositories; \
-	apk --no-cache add make musl-dev gcc g++ curl-dev util-linux-dev;
+	apk --no-cache add make musl-dev gcc clang llvm util-linux-dev;
 
-# Make directories
+# Make repo directory
 RUN	mkdir -p $REPO
 
 # Copy scripts into docker image
